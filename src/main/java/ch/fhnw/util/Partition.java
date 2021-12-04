@@ -249,14 +249,25 @@ public class Partition {
     }
 
     /**
-     * returns the device and numberString of this partition, e.g. "sda1" or
-     * "nvme0n1p1"
+     * Returns the device and numberString of this partition, e.g. "sda1" or
+     * "nvme0n1p1".
      *
      * @return the device and numberString of this partition, e.g. "sda1" or
      * "nvme0n1p1"
      */
     public String getDeviceAndNumber() {
         return deviceAndNumber;
+    }
+
+    /**
+     * Returns the full device and numberString of this partition, e.g.
+     * "/dev/sda1" or "/dev/nvme0n1p1".
+     *
+     * @return the full device and numberString of this partition, e.g.
+     * "/dev/sda1" or "/dev/nvme0n1p1".
+     */
+    public String getFullDeviceAndNumber() {
+        return "/dev/" + deviceAndNumber;
     }
 
     /**
