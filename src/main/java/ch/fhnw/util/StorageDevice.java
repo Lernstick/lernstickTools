@@ -299,12 +299,21 @@ public class StorageDevice implements Comparable<StorageDevice> {
     }
 
     /**
-     * returns the device node of the storage device (e.g. sda)
+     * Returns the device node of the storage device (e.g. sda).
      *
      * @return the device node of the storage device (e.g. sda)
      */
     public String getDevice() {
         return device;
+    }
+
+    /**
+     * Returns the full device node of the storage device (e.g. /dev/sda).
+     *
+     * @return the full device node of the storage device (e.g. /dev/sda)
+     */
+    public String getFullDevice() {
+        return "/dev/" + device;
     }
 
     /**

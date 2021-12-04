@@ -144,7 +144,7 @@ public class Partition {
     public void setBootFlag(boolean enabled) throws DBusException, IOException {
         ProcessExecutor processExecutor = new ProcessExecutor();
         int returnValue = processExecutor.executeProcess(true, true, "parted",
-                "/dev/" + getStorageDevice().getDevice(), "set",
+                getStorageDevice().getFullDevice(), "set",
                 String.valueOf(getNumber()), "boot", enabled ? "on" : "off");
         if (returnValue != 0) {
             throw new IOException("could not change boot flag on partition "
@@ -868,7 +868,7 @@ public class Partition {
 
         ProcessExecutor processExecutor = new ProcessExecutor();
         int returnValue = processExecutor.executeProcess(true, true, "parted",
-                "/dev/" + getStorageDevice().getDevice(),
+                getStorageDevice().getFullDevice(),
                 "rm", String.valueOf(getNumber()));
         if (returnValue != 0) {
             throw new IOException(
