@@ -592,6 +592,21 @@ public class Partition {
      * @throws java.io.IOException if an I/O exception occurs
      */
     public synchronized boolean umount() throws DBusException, IOException {
+        return umount(false);
+    }
+
+    /**
+     * umounts this partition via dbus/udisks
+     *
+     * @param keepLuksOpen if LUKS partitions should be kept open after
+     * unmounting
+     * @return <code>true</code>, if the umount operation succeeded,
+     * <code>false</code> otherwise
+     * @throws DBusException if a D-BUS exception occurs
+     * @throws java.io.IOException if an I/O exception occurs
+     */
+    public synchronized boolean umount(boolean keepLuksOpen)
+            throws DBusException, IOException {
         /**
          * TODO: umount timeout problem: when there have been previous copy
          * operations, this call very often fails with the following exception:
@@ -648,7 +663,7 @@ public class Partition {
         }
 
         if (success) {
-            if (isLuksEncrypted()) {
+            if ((!keepLuksOpen) && isLuksEncrypted()) {
                 ProcessExecutor processExecutor = new ProcessExecutor(true);
                 processExecutor.executeProcess(true, true,
                         "cryptsetup", "luksClose", getLUKSMappingName());
