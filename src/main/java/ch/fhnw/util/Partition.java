@@ -24,9 +24,12 @@ import org.xml.sax.SAXException;
 public class Partition {
 
     /**
-     * the label used for efi partitions
+     * The label used for efi partitions.
+     * This label is visible when booting on a Mac or when inserting the storage
+     * media in a running Windows system. Therefore we no longer use our more
+     * generic legacy labels like "boot" or "EFI" but a branded label instead.
      */
-    public final static String EFI_LABEL = "EFI";
+    public final static String EFI_LABEL = "Lernstick";
     /**
      * the label used for persistence partitions
      */
@@ -35,7 +38,7 @@ public class Partition {
         "live-rw"
     };
     private final static String[] LEGACY_EFI_LABELS = new String[]{
-        "boot"
+        "boot", "EFI"
     };
     private final static Logger LOGGER
             = Logger.getLogger(Partition.class.getName());
