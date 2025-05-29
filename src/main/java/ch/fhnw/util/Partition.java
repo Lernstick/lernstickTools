@@ -545,7 +545,7 @@ public class Partition {
                     // This utterly sucks but our options are limited...
 
                     ProcessExecutor processExecutor = new ProcessExecutor();
-                    List<String> commands = new ArrayList();
+                    List<String> commands = new ArrayList<>();
                     commands.addAll(Arrays.asList("udisksctl",
                             "mount", "-b", "/dev/" + blockDevice));
                     if (options.length > 0) {
