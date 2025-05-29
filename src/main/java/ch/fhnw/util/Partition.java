@@ -545,9 +545,16 @@ public class Partition {
                     // This utterly sucks but our options are limited...
 
                     ProcessExecutor processExecutor = new ProcessExecutor();
+                    List<String> commands = new ArrayList();
+                    commands.addAll(Arrays.asList("udisksctl",
+                            "mount", "-b", "/dev/" + blockDevice));
+                    if (options.length > 0) {
+                        commands.add("-o");
+                        commands.add(String.join(",", options));
+                    }
                     int returnValue = processExecutor.executeProcess(
-                            true, true, "udisksctl", "mount", "-b",
-                            "/dev/" + blockDevice);
+                            true, true, commands.toArray(String[]::new));
+
                     if (returnValue == 0) {
                         String output = processExecutor.getStdOutList().get(0);
                         // The device can be something like /dev/sda1 for
