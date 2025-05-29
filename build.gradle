@@ -14,3 +14,8 @@ task sortStrings(type:Exec) {
 	description = 'Sorts the strings in the properties files.'
 	commandLine 'sh', 'sort_strings.sh'
 }
+
+tasks.withType(JavaCompile) {
+    options.deprecation = true
+   options.compilerArgs += ['-Xlint:unchecked']
+}
